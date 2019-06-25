@@ -1,0 +1,40 @@
+<div class="container main-container">
+  <div class="row">
+    <div class="col-12">
+      <form (ngSubmit)="onSubmit(form.value)" #form="ngForm">
+        <div class="form-row">
+          <div class="col">
+            <input
+              class="form-control form-control-lg"
+              type="text"
+              placeholder="buscar película"
+              name="pelicula"
+              [(ngModel)]="pelicula"
+            />
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary btn-lg">Buscar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row my-5">
+    <div class="col-12">
+      <div class="card-columns">
+        <div class="card" *ngFor="let pelicula of _ps.peliculas">
+          <img [src]="pelicula | image" class="card-img-top" [alt]="pelicula.original_title" />
+          <div class="card-body">
+            <h5 class="card-title">{{pelicula.title}}</h5>
+            <p class="card-text">
+              {{pelicula.overview | slice:0:150}}...
+            </p>
+
+            <button class="btn btn-outline-primary btn-block" [routerLink]="['/pelicula', pelicula.id, 'buscar']">Ver más</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

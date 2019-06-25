@@ -1,0 +1,68 @@
+<div class="container animated fadeIn fast" *ngIf="pelicula">
+  <div class="row">
+    <div class="col-12">
+      <div class="row justify-content-between">
+        <h1 class="">{{ pelicula.title }}</h1>
+        <button class="btn btn-danger btn-lg" [routerLink]="pagina">
+          Atras
+        </button>
+      </div>
+      <hr class="mb-5" />
+    </div>
+    <div class="col-md-4">
+      <img [src]="pelicula | image: true" class="img img-fluid" />
+    </div>
+    <div class="col-md-6">
+      <h4>Sinopsis</h4>
+      <p class="text-justify">{{ pelicula.overview }}</p>
+      <div *ngIf="pelicula.tagline">
+      <hr>
+      <p class="lead" ><strong class="">Frase celebre: </strong>{{ pelicula.tagline }}</p>
+    </div>
+      <hr>
+      <p>Calificación: <span  class="badge badge-pill badge-primary">{{pelicula.vote_average/10 | percent}}</span></p>
+      <hr />
+      <p>
+        Generos:<span
+          *ngFor="let genero of pelicula.genres"
+          class="badge badge-pill badge-primary mx-1"
+          >{{ genero.name }}</span
+        >
+      </p>
+    </div>
+  </div>
+
+  <div class="mt-5" *ngIf="videosES.length > 0">
+    <h1 class="text-center">Trailers en Español</h1>
+    <hr />
+    <div class="row">
+      <div class="col-md-6 my-3 " *ngFor="let video of videosES">
+        <div class="embed-responsive embed-responsive-16by9 my-2">
+          <iframe
+            [src]="video | youtube"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5" *ngIf="videosEN.length > 0">
+    <h1 class="text-center">Trailers en Ingles</h1>
+    <hr />
+    <div class="row">
+      <div class="col-md-6 my-3 " *ngFor="let video of videosEN">
+        <div class="embed-responsive embed-responsive-16by9 my-2">
+          <iframe
+            [src]="video | youtube"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
