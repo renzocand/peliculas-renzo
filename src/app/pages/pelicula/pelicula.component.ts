@@ -23,7 +23,7 @@ export class PeliculaComponent implements OnInit {
   ngOnInit() {
     this._ps.getPelicula(this.id).subscribe(data=>{
       this.pelicula = data;
-      console.log(this.pelicula);
+      // console.log(this.pelicula);
     })
 
     this._ps.getVideos(this.id, 'es').subscribe(data=>{

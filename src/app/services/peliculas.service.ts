@@ -17,7 +17,7 @@ export class PeliculasService {
   Query(params:string){
     return this.http.jsonp(`${this.url}${params}/${this.query}`, 'JSONP_CALLBACK').pipe(
       map(data=>{
-      return data['results'].slice(0,6);
+      return data['results'].slice(0,20);
     }))
   }
 
